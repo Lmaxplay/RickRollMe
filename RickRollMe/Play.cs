@@ -33,8 +33,8 @@ namespace RickRollMe
 
                 engine.Convert(inputFile, outputFile);
             }
-            using (var mf = new MediaFoundationReader($"{source + vid.FullName}.mp3"))
-            using (var wo = new WaveOutEvent())
+            using (MediaFoundationReader mf = new MediaFoundationReader($"{source + vid.FullName}.mp3"))
+            using (WaveOutEvent wo = new WaveOutEvent())
             {
                 wo.Init(mf);
                 wo.Play();
@@ -43,6 +43,7 @@ namespace RickRollMe
                     Thread.Sleep(1000);
                 }
                 File.Delete(source + vid.FullName);
+                File.Delete(source + vid.FullName + ".mp3");
             }
         }
     }
